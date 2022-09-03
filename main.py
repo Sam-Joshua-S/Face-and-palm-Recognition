@@ -15,8 +15,9 @@ while True:
   success, img = cap.read()
   img = cv2.flip(img, 1)
   img = detector.findHands(img)
-  lmList = detector.findPosition(img, draw=False)
-
+  lmList,_ = detector.findPosition(img, draw=False)
+  print(lmList)
+  cv2.waitKey(1)
   if len(lmList) != 0:
     x1, y1 = lmList[8][1:]
     x2, y2 = lmList[12][1:]
@@ -37,5 +38,4 @@ while True:
   img = cv2.bitwise_or(img,imgCanvas)
   cv2.imshow("Image", img)
   cv2.imshow("Canvas", imgCanvas)
-  cv2.imshow("Inv", imgInv)
-  cv2.waitKey(1)
+  cv2.imshow("Inv", imgInv) 
